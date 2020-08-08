@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bidding Web Solutions</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
+<!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+</head>
+<body>
+<div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"> -->
+<script type="text/javascript" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript " href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>-->
+    <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js">-->
+
+    <!--</script>-->
+</div>
+<!--nav bar-->
+{% block  nav %}
+<div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">BWS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/about">About</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link " href="/contact" tabindex="-1" aria-disabled="true">Contact</a>
+      </li>{% if not user.is_authenticated %}
+        <li class="nav-item active">
+        <a class="nav-link " href="/admin" tabindex="-1" >Admin Login</a>
+      </li>{% endif %}
+        {% if not  user.is_authenticated %}
+        <li class="nav-item active">
+        <a class="nav-link " href="/accounts/signup/" tabindex="-1" aria-disabled="true">Sign Up</a>
+      </li>{% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+        <a class="nav-link " href="/wineers" tabindex="-1" aria-disabled="true">Bidwinners</a>
+      </li>{% endif %}
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+        <a class="nav-link " href="/accounts/logout/" tabindex="-1" aria-disabled="true">Logout</a>
+      </li>{% endif %}
+        <li class="nav-item active">{% if not user.is_authenticated %}
+        <a class="nav-link " href="/accounts/login/" tabindex="-1" aria-disabled="true">Login</a>
+      </li>{% endif %}
+        <li class="nav-item active">
+        <a class="nav-link " href="/checkout" tabindex="-1" aria-disabled="true">Checkout</a>
+      </li>
+    </ul>
+
+
+    <form class="form-inline my-2 my-lg-0" method="GET">
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      <a href="/search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</a>
+    </form>
+
+    <button type="button" class="btn btn-secondary mx-2 iconShopping "  data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="Vivamus
+sagittis lacus vel augue laoreet rutrum faucibus.">
+     Cart(<span id="cart">0</span>)
+</button>
+
+
+
+  </div>
+</nav>
+</div>
+<script>
+
+</script>
+{% endblock %}
+<!--nav end-->
+<!--category block start here-->
+{% block category %}
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group-mt-3">
+            <a href="/home" class="list-group-item list-group-item-action ">All Products
+
+            </a>
+            {% for c in cat %}
+            <a href="/cat/{{c.pk}}" class="list-group-item list-group-item-action ">{{c.title}}</a>
+{% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+<!--category block end here-->
+<!--main content block-->{%  block main %}
+{% endblock %}
+<!--end main content block-->
+<!--script div-->
+
+{% block js %}
+{% endblock %}
+<style>
+    .cartBox{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.8);
+z-index: 99999;
+	transition: 0.3s linear;
+	transform: scale(0);
+
+}
+.cartBox.active{
+	transform: scale(1);
+}
+.cartBox .cart{
+	position: relative;
+	height: 70%;
+	width: 80%;
+	background:#fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
+}
+.cartBox .cart i{
+	position:absolute;
+	right: 0;
+	top: 0;
+	background:#ff0;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+.cartBox .cart i:hover{
+
+	background:#ff0000a5;
+}
+
+.cartBox .cart h1{
+	position: relative;
+	margin-top: 2%;
+	font-size: 2.8rem;
+color: #017bf5;
+}
+
+
+</style>
+<div class="cartBox ">
+
+
+<div class="cart">
+	<i class="fa fa-close">
+
+	</i>
+	<h1>Cart</h1><div class="table">
+
+</div>
+</div>
+</div>
+<script type="text/javascript">
+	function Delete(e){
+
+console.log(e);
+cart=JSON.parse(localStorage.getItem("cart"));
+console.log(cart);
+delete cart[e];
+
+localStorage.setItem('cart',JSON.stringify(cart));
+console.log(cart);
+window.location.reload();
+
+};
+</script>
+<!--end script-->
+<script>
+
+window.onload=function(){
+	const iconShopping=document.querySelector('.iconShopping');
+	const cartCloseBtn=document.querySelector('.fa-close');
+	const cartBox=document.querySelector('.cartBox');
+	iconShopping.addEventListener("click",function(){
+cartBox.classList.add('active');
+	});
+	cartCloseBtn.addEventListener("click",function(){
+cartBox.classList.remove("active");
+	});
+	const cardBoxTable=cartBox.querySelector('.table');
+let tableData='';
+tableData+='<tr><th> Item Id </th><th> Item Name </th><th> Item price </th><th> </th></tr><br>';
+if(JSON.parse(localStorage.getItem("cart"))===null){
+tableData+='<tr><td colspan="5"> No items found</td></tr>';
+}else{
+	cart=JSON.parse(localStorage.getItem("cart"));
+	for(data in cart)
+	{
+		tableData+='<tr><th>'+data+'</th><th>'+cart[data][1]+'</th><th>'+cart[data][2]+'</th><th><a  onclick="Delete(data);">Delete</a></th></tr><br>';
+	}
+
+}cardBoxTable.innerHTML=tableData;
+
+}
+</script>
+</body>
+</html>

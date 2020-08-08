@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block category %}
+{% endblock %}
+{% block main %}
+<div class="container mt-5">
+<div class="row">
+    <div class="col-sm-6">
+<h2 class="text-center">
+Sign Up Here
+</h2>
+<br>
+<!-- <a href="" class="btn btn-danger text-white mt-5">CREATE ACCOUNT</a> -->
+   
+</div>
+<div class="col-sm-6">
+<!-- <h2 class="text-center">USER LOGIN</h2> -->
+<hr>
+<form method="POST" >
+    {% csrf_token %}
+    <label>
+        First Name
+    </label><input type="text" class="form-control" placeholder="first name" name="first">
+ <br>   
+ <label>
+     Last Name
+ </label>
+ <input type="text" class="form-control" placeholder="last name" name="ln"><br>
+<label>
+    Contact Number
+</label>
+<input type="text" class="form-control" placeholder="enter number" name="num">
+<br>
+ <label>Email Address</label>
+
+<input type="email" class=" form-control" placeholder="Enter email id" name="email_id">
+<br>
+<label>Password</label>
+<input type="password" class=" form-control" placeholder="Enter Password" name="pwd"><br>
+
+<br>
+<label>
+    Gender
+</label>
+<select class="form-control" name="gender">
+    <option value="Male">
+Male
+    </option>
+    <option value="Female">
+Female
+    </option>
+    <option value="other">
+        Other
+    </option>
+</select>
+    <label>City</label><input type="text" class="form-control" placeholder="enter your city" name="city"><br>
+    <label>pincode</label><input type="text" class="form-control" placeholder="pincode" name="pin_num"><br>
+    <label>Address</label><TEXTAREA class="form-control" placeholder="address" name="address"></TEXTAREA>
+<input type="submit" class="btn btn-danger mt-2" value="Submit">
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}

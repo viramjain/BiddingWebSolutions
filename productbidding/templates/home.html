@@ -1,0 +1,258 @@
+
+{% extends 'base.html' %}
+{% block main %}
+
+
+<!--<div class="col-md-10">-->
+
+    <!--<div class="row">-->
+
+        <!--<div class="row mt-3">-->
+
+            <!--<div class="col-md-12">-->
+<!--<div class="card-columns">-->
+    <!--{% for p in product %}-->
+                <!--<div class="card md-5" style="width: 18rem;">-->
+  <!--<img src="/media/{{p.Image}}" class="card-img-top" alt="...">-->
+  <!--<div class="card-body">-->
+    <!--<h5 class="card-title" id="name{{p.id}}">{{p.ptitle}}</h5>-->
+      <!--<h6 class="card-title" id="pricepr{{p.id}}">{{p.price}}</h6>-->
+    <!--<p class="card-text">{{p.pdesc}}</p><span id="div{{p.id}} " class="addtocart">-->
+      <!--<button  id="{{p.id}}" class="btn btn-primary cart">Add to cart</button></span>-->
+      <!--{% if p.bidstatus %}-->
+      <!--<a href="/bid/{{p.id}}" class="btn btn-primary"> Want to Bid</a>{% endif %}-->
+  <!--</div>-->
+<!--</div>{% endfor %}-->
+            <!--</div>-->
+            <!--&lt;!&ndash;card&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>end car&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+.main{
+	position: relative;
+	height: 100vh;
+	width: 100%;
+
+}
+.main header{
+	position: relative;
+	height: 15vh;
+	width: 100%;
+	display: flex;
+	align-items: center;justify-content: space-around;
+	background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5),url('https://images.pexels.com/photos/1486222/pexels-photo-1486222.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'));
+	background-size: cover;
+	background-position: center center;
+	font-size: 1.5rem;
+
+}
+.main header .iconShopping{
+position: relative;
+font-size: 2.9rem;
+cursor: pointer;
+z-index: 1;
+
+}
+.main header .iconShopping p{
+	position: absolute;
+	top: -5px;
+	right: : -12px;
+	font-size: 0.69rem;
+	background-color: #000;
+	padding: 5px 5px;
+	border-radius: 50%;
+}
+.main .itemsBox{
+	position: relative;
+	height: calc(100%-15vh);
+
+	width: 90%;
+	margin: 0 auto;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-gap: 10px;
+	padding: 50px 25px;
+
+}
+.main .itemsBox .item{
+	position: relative;
+	height: 400px;
+	width: 100%;
+	overflow: hidden;
+	padding: 10px 25px;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+}
+.main .itemsBox .item img{
+	position: relative;
+	width: 100%;
+	height: 60%;
+	object-fit: contain;
+}
+.main .itemsBox .item h1{
+position: relative;
+width: 100%;
+text-align: center;
+font-size: 1.2rem;
+font-weight: lighter;
+padding: 10px 0;
+}
+.main .itemsBox .item p{
+position: relative;
+width: 100%;
+text-align: right;
+font-size: 1.2rem;
+font-weight: lighter;
+padding: 10px 0;
+color: #017bf5;
+}
+.main .itemsBox .item a{
+position: relative;
+
+text-align: left;
+font-size: 1.2rem;
+font-weight: lighter;
+padding: 10px 15px;
+background: #0f0f0f;
+text-decoration: none;
+color: #fff;
+text-shadow: 0px 0px 2px rgba(0,0,0,0.5);
+
+}
+.main .itemsBox .item a:hover{
+background:#0f0f0fa5;
+
+}
+.cartBox{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0,0,0,0.8);
+z-index: 99999;
+	transition: 0.3s linear;
+	transform: scale(0);
+
+}
+.cartBox.active{
+	transform: scale(1);
+}
+.cartBox .cart{
+	position: relative;
+	height: 70%;
+	width: 80%;
+	background:#fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
+}
+.cartBox .cart i{
+	position:absolute;
+	right: 0;
+	top: 0;
+	background:#ff0;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+.cartBox .cart i:hover{
+
+	background:#ff0000a5;
+}
+
+.cartBox .cart h1{
+	position: relative;
+	margin-top: 2%;
+	font-size: 2.8rem;
+color: #017bf5;
+}
+
+</style>
+
+
+<div class="main">
+
+<div class="itemsBox">
+	{% for p in product %}
+		<div class="item">
+			<img src="/media/{{p.Image}}"  alt="...">
+			<div class="itemInfo">
+				<h1 >{{p.title}}
+				</h1>
+				<h6 id="pname{{p.id}}">{{p.pdesc}}</h6>
+				<p>
+					$<span id="price{{p.id}}">
+						{{p.price}}
+				</span></p>
+
+      <!--<h6 class="card-title" id="pricepr{{p.id}}">{{p.price}}</h6>-->
+    <!--<p class="card-text">{{p.pdesc}}</p><span id="div{{p.id}} " class="addtocart">-->
+      <!--<button  id="{{p.id}}" class="btn btn-primary cart">Add to cart</button></span>-->
+      {% if p.bidstatus %}
+      <a href="/bid/{{p.id}}" class="btn btn-primary"> Want to Bid</a>{% endif %}
+
+				<a   id="{{p.id}}" onclick="bt1({{p.id}})" title="add to cart" class="attToCart">Add To Cart</a>
+			</div>
+		</div>{% endfor %}
+
+</div></div>
+{% endblock %}
+
+{% block js %}
+<script>
+    if(localStorage.getItem('cart')==null){
+var cart={};
+
+}else{
+cart=JSON.parse(localStorage.getItem('cart'));
+console.log(cart);
+document.getElementById('cart').innerHTML=Object.keys(cart).length;
+console.log(Object.keys(cart).length);
+for(item in cart){
+document.getElementById(item).innerHTML="Already in cart";
+
+}
+}
+
+
+function bt1(id){
+
+var idstr=id.toString();
+
+console.log(idstr);
+if(cart[idstr]==undefined){
+qty=1;
+name=document.getElementById("pname"+idstr).innerHTML;
+price=document.getElementById("price"+idstr).innerHTML;
+console.log(name,price);
+cart[idstr]=[qty,name,price];
+
+console.log(cart);
+localStorage.setItem('cart',JSON.stringify(cart));
+document.getElementById('cart').innerHTML=Object.keys(cart).length;
+document.getElementById(idstr).innerHTML="Already in cart";
+window.location.reload();
+}}
+
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block  main %}
+ <script>
+function showtimer(){
+timer_div=document.getElementById('time');
+timer_div.innerHTML=timeleft;
+mytimer=setInterval(function(){
+var hr=0;var min=0;var sec=0;
+var time_up=false;
+t=timeleft.split(":");
+hr=parseInt(t[0]);
+min=parseInt(t[1]);
+sec=parseInt(t[2]);
+if(sec==0){
+if(min>0){
+sec=59;
+min--;
+}else if(hr>0){
+min=59;
+sec=59;
+hr--;
+}else{
+time_up=true;
+}
+}else{
+sec--;
+}
+if(hr<10){
+hr="0"+hr;
+}
+if(min<10){
+min="0"+min;
+}
+if(sec<10){
+sec="0"+sec;
+}
+time=hr+":"+min+":"+sec;
+if(time_up){
+time="TIME UP";
+
+}
+time_div=document.getElementById('time');
+timer_div.innerHTML=time;
+if(time_up)
+clearInterval(my_timer);
+},1000);
+}
+    </script><body onload="showtimer();">
+<div  >
+
+<script type="text/javascript">
+var timeleft=""+"{{duration}}";
+
+</script>
+
+<div class="col-md-10"  >
+
+    <div class="row">
+
+        <div class="row mt-3">
+       <div class="col-md-12" >
+
+                <div class="card " style="width: 18rem;">
+  <img src="/media/{{p.Image}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title" id="name{{p.id}}">{{p.ptitle}}</h5>
+      <h6 class="card-title" id="pricepr{{p.id}}">Base Price:{{p.price}}</h6>
+    <p class="card-text">{{p.pdesc}}</p>
+        <h6>Bidendtime:{{p.bidet}}</h6>
+<form method="post" action="/amountupdate/{{p.id}}/">{% csrf_token %}
+      <label> amount:</label>
+      <input type="text" name="price"><br><br>
+    <input type="submit" class="btn btn-danger mt-2" value="Bid"></a></form>
+  </div>
+</div>
+            </div>
+                    </div>
+        </div>
+
+    </div>
+
+</div>
+<div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+      <th scope="col">bid amount</th>
+        <th scope="col">BidTime</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for i in list %}
+    <tr>
+      <th scope="row">{{i.fname}}</th>
+      <td>{{i.lname}}</td>
+      <td>{{i.amount}}</td>
+      <td>{{i.bidtime}}</td>
+    </tr>
+    {% endfor %}
+
+
+  </tbody>
+</table></div></body>
+{% endblock %}
+

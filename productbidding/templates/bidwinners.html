@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block category %}
+{% endblock %}
+{% block  main %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+      <th scope="col">product id</th>
+<th scope="col">amount</th>
+      <th scope="col">Bidtime</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for i in list %}
+    <tr>
+      <th scope="row">{{i.fname}}</th>
+      <td>{{i.lname}}</td>
+      <td>{{i.product_id}}</td>
+        <td>{{i.amount}}</td>
+      <td>{{i.bidtime}}</td>
+    </tr>
+    {% endfor %}
+
+
+  </tbody>
+</table>
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block category %}
+{% endblock %}
+{% block main %}
+<div class="container mt-5">
+<div class="row">
+    <div class="col-sm-6">
+<h2 class="text-center">
+
+
+</div>
+<div class="col-sm-6">
+
+<form method="POST"  >
+    {% csrf_token %}
+
+<label>Email Address</label>
+<input type="email" class=" form-control" placeholder="Enter email id" name="email">
+<hr>
+    <br>
+
+<input type="submit" class="btn btn-danger mt-2" value="Next">
+
+
+</form>
+</div>
+</div>
+</div>
+{% endblock %}
+
